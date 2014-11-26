@@ -60,10 +60,11 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 # Add files to image
 
 ADD app.conf /etc/apache2/sites-available/app.conf
-ADD services.sh /usr/local/bin/services.sh
+ADD app.sh /usr/local/bin/app.sh
 
-RUN chmod +x /usr/local/bin/services.sh
+RUN chmod +x /usr/local/bin/app.sh
 RUN mkdir -p /var/www/app
+RUN ln -s /var/www/app /app
 
 
 # Apache
