@@ -1,0 +1,12 @@
+machine:
+    services:
+        - docker
+dependencies:
+    override:
+        - docker build -t fbenard/docker-lamp $HOME/docker-lamp:
+            timeout: 1200
+        - docker push fbenard/docker-lamp
+            timeout: 1200
+test:
+    override:
+        - docker run -d fbenard/docker-lamp
