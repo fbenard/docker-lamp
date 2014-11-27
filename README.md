@@ -22,6 +22,8 @@ docker run --rm -it -p 80:80 fbenard/docker-lamp
 app.sh
 ```
 
+Edit your hosts so that local.app.com goes to the IP address of the Docker container.
+
 Then open you browser and reach out to http://local.app.com/
 
 
