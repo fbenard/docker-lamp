@@ -4,7 +4,8 @@ docker-lamp
 
 ## About
 
-This Docker image allows web developers 
+This Docker image allows to quickly run a web application based on a full LAMP stack (Linux, Apache, MySQL, PHP).
+
 
 ## Install
 
@@ -70,6 +71,8 @@ app.sh
 
 ## For developers
 
+If you're a developer, you might want to work on your own local code and reach MySQL:
+
 ```
-docker run --rm -it -p 80:80 -p 3306:3306 -p 6379:6379 -v <PATH_TO_LOCAL_APP>:/var/www/app fbenard/docker-lamp
+docker run --rm -it -p 80:80 -p 3306:3306 -v <PATH_TO_LOCAL_APP>:/var/www/app fbenard/docker-lamp
 ```
