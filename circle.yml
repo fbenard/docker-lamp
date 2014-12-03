@@ -1,0 +1,16 @@
+machine:
+    services:
+        - docker
+dependencies:
+    override:
+        - docker build -t fbenard/docker-lamp $HOME/docker-lamp:
+            timeout: 1200
+test:
+    override:
+        - docker run -d fbenard/docker-lamp
+deployment:
+    hub:
+        branch: master
+        commands:
+            - docker login --email="$DOCKER_REGISTRY_EMAIL" --username="$DOCKER_REGISTRY_LOGIN" --password="$DOCKER_REGISTRY_PASSWORD"
+            - docker push fbenard/docker-lamp
