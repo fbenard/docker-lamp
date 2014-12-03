@@ -9,4 +9,5 @@ dependencies:
             timeout: 1200
 test:
     override:
+        - docker login --email="fb.spam@me.com" --username="$DOCKER_REGISTRY_LOGIN" --password="$DOCKER_REGISTRY_PASSWORD"
         - docker run -d fbenard/docker-lamp
