@@ -5,7 +5,7 @@ dependencies:
     override:
         - docker build -t fbenard/docker-lamp $HOME/docker-lamp:
             timeout: 1200
-        - docker push fbenard/docker-lamp
+        - docker push fbenard/docker-lamp:
             timeout: 1200
 test:
     override:
