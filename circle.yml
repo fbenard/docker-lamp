@@ -12,5 +12,5 @@ deployment:
     hub:
         branch: master
         commands:
-            - docker login --email="fb.spam@me.com" --username="$DOCKER_REGISTRY_LOGIN" --password="$DOCKER_REGISTRY_PASSWORD"
+            - docker login --email="$DOCKER_REGISTRY_EMAIL" --username="$DOCKER_REGISTRY_LOGIN" --password="$DOCKER_REGISTRY_PASSWORD"
             - docker push fbenard/docker-lamp
