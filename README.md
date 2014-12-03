@@ -3,7 +3,7 @@ docker-lamp
 
 This Docker image allows to quickly run a web application based on a full LAMP stack (Linux, Apache, MySQL, PHP).
 
-![Build status](https://circleci.com/gh/fbenard/docker-lamp.svg?style=shield&circle-token=1e6b07920fa6676dafe860d85dbd9674b02ff456)
+![Build status](https://circleci.com/gh/fbenard/docker-lamp/tree/develop.svg?style=shield&circle-token=1e6b07920fa6676dafe860d85dbd9674b02ff456)
 
 
 ## Install
