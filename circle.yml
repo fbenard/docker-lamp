@@ -9,4 +9,4 @@ dependencies:
             timeout: 1200
 test:
     override:
-        - docker run -d fbenard/docker-lamp 
+        - docker run -d fbenard/docker-lamp
