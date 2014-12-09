@@ -70,6 +70,14 @@ app.sh
 ```
 
 
+## Services
+
+**MySQL**
+
+- Login: `root`
+- Password: `root`
+
+
 ## For developers
 
 If you're a developer, you might want to work on your own local code and reach MySQL:

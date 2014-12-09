@@ -8,6 +8,11 @@ FROM ubuntu:14.04
 MAINTAINER Fabien BÉNARD "fb.spam@me.com"
 
 
+# Environment variables
+
+ENV DOCKER_MYSQL_PASSWORD root
+
+
 # Install core packages
 
 RUN sudo apt-get update && \
@@ -49,6 +54,13 @@ RUN DEBIAN_FRONTEND=noninteractive \
     phpunit
 
 RUN pecl install "channel://pecl.php.net/zip-1.5.0"
+
+
+# Setup MySQL
+
+RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+RUN service mysql start ; \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
 
 # Install Composer
