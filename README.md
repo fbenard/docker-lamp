@@ -17,13 +17,30 @@ Simply pull this image from the Docker hub and run it:
 
 ```
 docker pull fbenard/docker-lamp
-docker run --rm -it -p 80:80 fbenard/docker-lamp
+docker run --rm -it -p 80:80 -p 3306:3306 -p fbenard/docker-lamp
 app.sh
 ```
 
 Edit your hosts so that local.app.com goes to the IP address of the Docker container.
 
 Then open you browser and reach out to http://local.app.com/
+
+
+## Mount your own application
+
+If you're a developer, you might want to mount your source code:
+
+```
+docker run --rm -it -p 80:80 -p 3306:3306 -v /path/to/your/app:/var/www/app fbenard/docker-lamp
+```
+
+
+## Services
+
+**MySQL**
+
+- Login: `root`
+- Password: `root`
 
 
 ## Build the image
@@ -39,7 +56,7 @@ docker build -t fbenard/docker-lamp .
 
 ## Build your own image
 
-It is highly recommended to extend this image by writing your own Dockerfile. This will for instance allow you to customize Apache virtual hosts. First, write a Dockerfile:
+You can use this Docker image as a base for your own Docker image. This will for instance allow you to customize Apache virtual hosts. First, write a Dockerfile:
 
 ```
 # Base image
@@ -67,21 +84,4 @@ cd custom-app
 docker build -t me/custom-app .
 docker run --rm -it  -p 80:80 me/custom-app
 app.sh
-```
-
-
-## Services
-
-**MySQL**
-
-- Login: `root`
-- Password: `root`
-
-
-## For developers
-
-If you're a developer, you might want to work on your own local code and reach MySQL:
-
-```
-docker run --rm -it -p 80:80 -p 3306:3306 -v <PATH_TO_LOCAL_APP>:/var/www/app fbenard/docker-lamp
 ```
