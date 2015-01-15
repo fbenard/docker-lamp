@@ -9,8 +9,8 @@ dependencies:
             timeout: 1200
 test:
     override:
-        - docker run -d -p 80:80 -p 3306:3306 -p 6379:6379 fbenard/docker-lamp bash -c "app.sh" && sleep 10
         - sudo service mysql stop
+        - docker run -d -p 80:80 -p 3306:3306 -p 6379:6379 fbenard/docker-lamp bash -c "app.sh" && sleep 10
         - if [[ $(curl -sL -o /dev/null -w %{http_code} 'http://local.app.com') == *200* ]]; then exit 0; else exit 1; fi;
 deployment:
     hub:
