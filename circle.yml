@@ -1,13 +1,16 @@
 machine:
     services:
         - docker
+    hosts:
+        local.app.com: 127.0.0.1
 dependencies:
     override:
         - docker build -t fbenard/docker-lamp $HOME/docker-lamp:
             timeout: 1200
 test:
     override:
-        - docker run -d fbenard/docker-lamp
+        - docker run -d -p 80:80 -p 3306:3306 -p 6379:6379 fbenard/docker-lamp bash -c "app.sh" && sleep 10
+        - if [[ $(curl -sL -o /dev/null -w %{http_code} 'http://local.app.com') == *200* ]]; then exit 0; else exit 1; fi;
 deployment:
     hub:
         branch: master
