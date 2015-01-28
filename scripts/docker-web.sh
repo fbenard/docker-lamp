@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#
+
+flags="--rm -it --tty --entrypoint=\"bash\""
+image="fbenard/docker-web"
+name=
+ports=
+
+
 # Define default services / ports
 
 declare -a SERVICES=("apache" "elastic-search" "mongodb" "mysql" "rabbitmq" "redis")
@@ -9,7 +17,7 @@ declare -a PORTS_CONTAINER=()
 
 # Parse -b option
 
-while getopts “b:” OPTION
+while getopts “b:di:n:” OPTION
 do
 	case $OPTION in
 	b)
@@ -46,6 +54,15 @@ do
 				PORTS_HOST+=("0")
 			fi
 		done
+	;;
+	d)
+		flags="-d"
+	;;
+	i)
+		image=$OPTARG
+	;;
+	n)
+		name="--name $OPTARG"
 	;;
 	esac
 done
@@ -93,8 +110,6 @@ done
 
 # Build the ports command line
 
-ports=
-
 for index in "${!SERVICES[@]}"
 do
 	ports="$p -p ${PORTS_HOST[index]}:${PORTS_CONTAINER[index]}"
@@ -110,4 +125,4 @@ boot2docker up
 
 # Run the image
 
-docker run --rm -it $ports -v `pwd`:/var/www/app fbenard/docker-web
+docker run $flags $ports $name -v `pwd`:/var/www/app $image
