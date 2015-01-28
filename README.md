@@ -1,29 +1,29 @@
-docker-lamp
+docker-web
 ===========
 
 This Docker image allows to quickly run a web application based on a full LAMP stack (Linux, Apache, MySQL, PHP).
 
-![Build status](https://circleci.com/gh/fbenard/docker-lamp/tree/master.svg?style=shield&circle-token=1e6b07920fa6676dafe860d85dbd9674b02ff456)
+![Build status](https://circleci.com/gh/fbenard/docker-web/tree/master.svg?style=shield&circle-token=1e6b07920fa6676dafe860d85dbd9674b02ff456)
 
 
 ## Install
 
 You must have Docker installed on your machine prior to using this image.
 
-To install the binary `docker-lamp`, run:
+To install the binary `docker-web`, run:
 
 ```
-curl -sS https://raw.githubusercontent.com/fbenard/docker-lamp/master/install.sh | sudo bash
+curl -sS https://raw.githubusercontent.com/fbenard/docker-web/master/install.sh | sudo bash
 ```
 
 
 ## Getting started
 
-Run your web application inside the docker-lamp image:
+Run your web application inside the docker-web image:
 
 ```
 cd myapp
-docker-lamp
+docker-web
 ```
 
 Once inside the container, start services:
@@ -56,19 +56,19 @@ However if you need to either remove binding of a service or to map it to a diff
 - To bind only Apache on port 8080:
 
 ```
-docker-lamp -b "apache:8080"
+docker-web -b "apache:8080"
 ```
 
 - To bind Apache and MySQL on default ports:
 
 ```
-docker-lamp -b "apache|mysql"
+docker-web -b "apache|mysql"
 ```
 
 - To bind Apache on default port and MySQL on port 3000:
 
 ```
-docker-lamp -b "apache|mysql:3000"
+docker-web -b "apache|mysql:3000"
 ```
 
 

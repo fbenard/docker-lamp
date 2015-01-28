@@ -5,7 +5,7 @@ FROM ubuntu:14.04
 
 # Maintainers
 
-MAINTAINER Fabien BÉNARD "fb.spam@me.com"
+MAINTAINER Fabien BÉNARD "contact@fabienbenard.com"
 
 
 # Environment variables

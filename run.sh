@@ -110,4 +110,4 @@ boot2docker up
 
 # Run the image
 
-docker run --rm -it $ports -v `pwd`:/var/www/app fbenard/docker-lamp
+docker run --rm -it $ports -v `pwd`:/var/www/app fbenard/docker-web

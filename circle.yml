@@ -5,15 +5,14 @@ machine:
         app.local: 127.0.0.1
 dependencies:
     override:
-        - docker build -t fbenard/docker-lamp $HOME/docker-lamp:
-            timeout: 1200
+        - docker build -t fbenard/docker-web $HOME/docker-web
 test:
     override:
-        - docker run -d -p 80:80 fbenard/docker-lamp bash -c "start.sh" && sleep 10
+        - docker run -d -p 80:80 fbenard/docker-web bash -c "start.sh" && sleep 10
         - if [[ $(curl -sL -o /dev/null -w %{http_code} 'http://app.local') == *200* ]]; then exit 0; else exit 1; fi;
 deployment:
     hub:
         branch: master
         commands:
             - docker login --email="$DOCKER_REGISTRY_EMAIL" --username="$DOCKER_REGISTRY_LOGIN" --password="$DOCKER_REGISTRY_PASSWORD"
-            - docker push fbenard/docker-lamp
+            - docker push fbenard/docker-web
