@@ -115,4 +115,5 @@ WORKDIR /var/www/app
 
 # Run Supervisor daemon
 
-CMD ["/usr/bin/supervisord"]
+ENTRYPOINT ["/usr/bin/supervisord"]
+CMD ["-n"]
