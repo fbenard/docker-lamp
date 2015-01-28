@@ -59,8 +59,8 @@ RUN pecl install "channel://pecl.php.net/zip-1.5.0"
 # Setup MySQL
 
 RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
-RUN service mysql start ; \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;" \
+RUN service mysql start && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;" && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
 
@@ -73,9 +73,9 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 # Add files to image
 
 ADD app.conf /etc/apache2/sites-available/app.conf
-ADD app.sh /usr/local/bin/app.sh
+ADD start.sh /usr/local/bin/start.sh
 
-RUN chmod +x /usr/local/bin/app.sh
+RUN chmod +x /usr/local/bin/start.sh
 RUN mkdir -p /var/www/app
 RUN ln -s /var/www/app /app
 
