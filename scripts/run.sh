@@ -2,7 +2,7 @@
 
 # Define default services / ports
 
-declare -a SERVICES=("apache" "es" "mongodb" "mysql" "rabbitmq" "redis")
+declare -a SERVICES=("apache" "elastic-search" "mongodb" "mysql" "rabbitmq" "redis")
 declare -a PORTS_HOST=()
 declare -a PORTS_CONTAINER=()
 
@@ -65,7 +65,7 @@ do
 	elif [ "${SERVICES[index]}" == "mongodb" ]
 	then
 		port=27017
-	elif [ "${SERVICES[index]}" == "es" ]
+	elif [ "${SERVICES[index]}" == "elastic-search" ]
 	then
 		port=9200
 	elif [ "${SERVICES[index]}" == "mysql" ]

@@ -13,7 +13,7 @@ You must have Docker installed on your machine prior to using this image.
 To install the binary `docker-web`, run:
 
 ```
-curl -sS https://raw.githubusercontent.com/fbenard/docker-web/master/install.sh | sudo bash
+curl -sS https://raw.githubusercontent.com/fbenard/docker-web/master/scripts/install.sh | sudo bash
 ```
 
 

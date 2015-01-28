@@ -56,14 +56,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN pecl install "channel://pecl.php.net/zip-1.5.0"
 
 
-# Setup MySQL
-
-RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
-RUN service mysql start && \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;" && \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-
-
 # Install Composer
 
 RUN curl -sS https://getcomposer.org/installer | php
@@ -72,15 +64,12 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 
 # Add files to image
 
-ADD app.conf /etc/apache2/sites-available/app.conf
-ADD start.sh /usr/local/bin/start.sh
+ADD config/app.conf /etc/apache2/sites-available/app.conf
 
-RUN chmod +x /usr/local/bin/start.sh
 RUN mkdir -p /var/www/app
-RUN ln -s /var/www/app /app
 
 
-# Apache
+# Setup Apache
 
 RUN sudo a2enmod deflate
 RUN sudo a2enmod expires
@@ -90,6 +79,14 @@ RUN sudo a2enmod ssl
 RUN sudo a2enmod status
 
 RUN sudo a2ensite app.conf
+
+
+# Setup MySQL
+
+RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+RUN service mysql start && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;" && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '${DOCKER_MYSQL_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
 
 # Expose volumes
