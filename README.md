@@ -29,7 +29,7 @@ docker-web
 Once inside the container, start services:
 
 ```
-start.sh
+service supervisor start
 ```
 
 Edit your hosts so that app.local is forwarded to the IP address of the Docker container.

@@ -20,7 +20,8 @@ RUN sudo apt-get update && \
     sudo apt-get install -yqq \
     apt-utils \
     dialog \
-    debconf-utils
+    debconf-utils \
+    supervisor
 
 
 # Setup localization
@@ -65,8 +66,14 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 # Add files to image
 
 ADD config/app.conf /etc/apache2/sites-available/app.conf
+ADD config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/www/app
+
+
+# Setup Supervisor
+
+RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor
 
 
 # Setup Apache
@@ -106,6 +113,6 @@ EXPOSE 6379
 WORKDIR /var/www/app
 
 
-# Define entrypoint
+# Run Supervisor daemon
 
-ENTRYPOINT ["bash"]
+CMD ["/usr/bin/supervisord"]
