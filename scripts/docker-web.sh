@@ -10,7 +10,7 @@ ports=
 
 # Define default services / ports
 
-declare -a SERVICES=("apache" "elastic-search" "mongodb" "mysql" "rabbitmq" "redis")
+declare -a SERVICES=()
 declare -a PORTS_HOST=()
 declare -a PORTS_CONTAINER=()
 
@@ -21,11 +21,6 @@ while getopts “b:di:n:” OPTION
 do
 	case $OPTION in
 	b)
-		# Reset default services
-
-		declare -a SERVICES=()
-
-		
 		# Explode services
 
 		IFS='|' read -a services <<< "$OPTARG"
