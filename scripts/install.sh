@@ -13,7 +13,7 @@ git clone https://github.com/fbenard/docker-web /tmp/docker-web
 
 # Copy run.sh
 
-cp -f /tmp/docker-web/scripts/run.sh /usr/local/bin/docker-web
+cp -f /tmp/docker-web/scripts/docker-web.sh /usr/local/bin/docker-web
 chmod +x /usr/local/bin/docker-web
 
 
