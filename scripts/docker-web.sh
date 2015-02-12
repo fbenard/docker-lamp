@@ -71,9 +71,12 @@ do
 
 	port=
 
-	if [ "${SERVICES[index]}" == "apache" ]
+	if [ "${SERVICES[index]}" == "http" ]
 	then
 		port=80
+	elif [ "${SERVICES[index]}" == "https" ]
+	then
+		port=443
 	elif [ "${SERVICES[index]}" == "mongodb" ]
 	then
 		port=27017
