@@ -71,6 +71,11 @@ ADD config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/www/app
 
 
+# Setup hosts
+
+RUN echo "127.0.0.1    app.local" >> /etc/hosts
+
+
 # Setup Supervisor
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor
