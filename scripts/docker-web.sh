@@ -110,7 +110,7 @@ done
 
 for index in "${!SERVICES[@]}"
 do
-	ports="$p -p ${PORTS_HOST[index]}:${PORTS_CONTAINER[index]}"
+	ports="$ports -p ${PORTS_HOST[index]}:${PORTS_CONTAINER[index]}"
 done
 
 
