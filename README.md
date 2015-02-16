@@ -29,7 +29,7 @@ docker-web
 Once inside the container, start services:
 
 ```
-service supervisor start
+app.sh
 ```
 
 Edit your hosts so that app.local is forwarded to the IP address of the Docker container.
@@ -47,28 +47,28 @@ http://app.local
 
 By default all services are bound to the Docker container on default ports:
 
-- Apache on port 80
+- HTTP on port 80
 - MySQL on port 3306
 - Redis on port 6379
 
 However if you need to either remove binding of a service or to map it to a different port, you can do so with the `-b` option. For instance,
 
-- To bind only Apache on port 8080:
+- To bind only HTTP on port 8080:
 
 ```
-docker-web -b "apache:8080"
+docker-web -b "http:8080"
 ```
 
 - To bind Apache and MySQL on default ports:
 
 ```
-docker-web -b "apache|mysql"
+docker-web -b "http|mysql"
 ```
 
 - To bind Apache on default port and MySQL on port 3000:
 
 ```
-docker-web -b "apache|mysql:3000"
+docker-web -b "http|mysql:3000"
 ```
 
 
