@@ -21,7 +21,8 @@ RUN sudo apt-get update && \
     apt-utils \
     dialog \
     debconf-utils \
-    supervisor
+    supervisor \
+    software-properties-common python-software-properties
 
 
 # Setup localization
@@ -55,6 +56,19 @@ RUN DEBIAN_FRONTEND=noninteractive \
     phpunit
 
 RUN pecl install "channel://pecl.php.net/zip-1.5.0"
+
+
+# Install ElasticSearch
+
+RUN wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+
+RUN sudo add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
+
+RUN sudo apt-get update && \
+    DEBIAN_FRONTEND=noninteractive && \
+    sudo apt-get install -yqq \
+    openjdk-7-jdk \
+    elasticsearch
 
 
 # Install Composer
@@ -117,6 +131,7 @@ VOLUME /var/www/app
 EXPOSE 80
 EXPOSE 3306
 EXPOSE 6379
+EXPOSE 9200
 
 
 # Define working directory
