@@ -80,7 +80,7 @@ do
 	elif [ "${SERVICES[index]}" == "mongodb" ]
 	then
 		port=27017
-	elif [ "${SERVICES[index]}" == "elastic-search" ]
+	elif [ "${SERVICES[index]}" == "es" ]
 	then
 		port=9200
 	elif [ "${SERVICES[index]}" == "mysql" ]
