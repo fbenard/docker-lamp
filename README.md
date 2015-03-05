@@ -4,6 +4,7 @@ docker-web
 This Docker image allows to quickly run a web application.
 
 ![Build status](https://circleci.com/gh/fbenard/docker-web/tree/master.svg?style=shield&circle-token=1e6b07920fa6676dafe860d85dbd9674b02ff456)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/06c8e0eb-e37d-4c9c-9397-3fc9f6c909b4/mini.png)](https://insight.sensiolabs.com/projects/06c8e0eb-e37d-4c9c-9397-3fc9f6c909b4)
 
 
 ## Install
