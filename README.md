@@ -79,3 +79,7 @@ docker-web -b "http|mysql:3000"
 
 - Login: `root`
 - Password: `root`
+
+**ElasticSearch**
+
+- http://app.local:9200/_plugin/head/
