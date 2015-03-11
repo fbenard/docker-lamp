@@ -70,6 +70,8 @@ RUN sudo apt-get update && \
     openjdk-7-jdk \
     elasticsearch
 
+RUN sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+
 
 # Install Composer
 
