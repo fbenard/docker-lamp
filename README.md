@@ -1,7 +1,7 @@
 docker-web
 ===========
 
-This Docker image allows to quickly run a web application.
+This Docker image allows to quickly run a web application. It is shipped with Apache, MySQL, ElastciSearch and Redis.
 
 ![Build status](https://circleci.com/gh/fbenard/docker-web/tree/master.svg?style=shield&circle-token=1e6b07920fa6676dafe860d85dbd9674b02ff456)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/06c8e0eb-e37d-4c9c-9397-3fc9f6c909b4/mini.png)](https://insight.sensiolabs.com/projects/06c8e0eb-e37d-4c9c-9397-3fc9f6c909b4)
@@ -44,36 +44,15 @@ Then open you browser and visit:
 http://app.local
 
 
-# Bind services
-
-By default all services are bound to the Docker container on default ports:
-
-- HTTP on port 80
-- MySQL on port 3306
-- Redis on port 6379
-
-However if you need to either remove binding of a service or to map it to a different port, you can do so with the `-b` option. For instance,
-
-- To bind only HTTP on port 8080:
-
-```
-docker-web -b "http:8080"
-```
-
-- To bind Apache and MySQL on default ports:
-
-```
-docker-web -b "http|mysql"
-```
-
-- To bind Apache on default port and MySQL on port 3000:
-
-```
-docker-web -b "http|mysql:3000"
-```
-
-
 ## Services
+
+docker-web is shipped with the following services:
+
+- Apache on port 80 (`http`) and 443 (`https`)
+- MySQL on port 3306 (`mysql`)
+- ElasticSearch on port 9200 (`es`)
+- Redis on port 6379 (`redis`)
+
 
 **MySQL**
 
@@ -83,3 +62,26 @@ docker-web -b "http|mysql:3000"
 **ElasticSearch**
 
 - http://app.local:9200/_plugin/head/
+
+
+# Bind services
+
+By default no service is bound. However, the `-b` option allows you to easily decide to bind specific services as well as map them to custom ports. For instance,
+
+- To bind only HTTP on port 8080:
+
+```
+docker-web -b "http:8080"
+```
+
+- To bind ElasticSearch and MySQL on default ports:
+
+```
+docker-web -b "es|mysql"
+```
+
+- To bind Redis on default port and MySQL on port 3000:
+
+```
+docker-web -b "redis|mysql:3000"
+```
