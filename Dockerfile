@@ -73,6 +73,21 @@ RUN sudo apt-get update && \
 RUN sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
 
 
+# Install RabbitMQ
+
+RUN echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
+
+RUN wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc && \
+    sudo apt-key add rabbitmq-signing-key-public.asc
+
+RUN sudo apt-get update && \
+    DEBIAN_FRONTEND=noninteractive && \
+    sudo apt-get install -yqq \
+    rabbitmq-server
+
+RUN rabbitmq-plugins enable rabbitmq_management
+
+
 # Install Composer
 
 RUN curl -sS https://getcomposer.org/installer | php
@@ -132,8 +147,10 @@ VOLUME /var/www/app
 
 EXPOSE 80
 EXPOSE 3306
+EXPOSE 5672
 EXPOSE 6379
 EXPOSE 9200
+EXPOSE 15672
 
 
 # Define working directory
