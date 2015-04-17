@@ -56,7 +56,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     php5 libapache2-mod-php5 php5-cli php5-curl php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis \
     phpunit
 
-RUN pecl install "channel://pecl.php.net/zip-1.5.0"
+RUN pecl install zip
 
 
 # Install ElasticSearch
