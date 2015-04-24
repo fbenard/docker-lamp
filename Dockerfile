@@ -97,10 +97,10 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 
 # Add files to image
 
-ADD config/app.conf /etc/apache2/sites-available/app.conf
+#ADD config/app.conf /etc/apache2/sites-available/app.conf
 ADD config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN mkdir -p /var/www/app
+#RUN mkdir -p /var/www/app
 
 ADD scripts/app.sh /usr/local/bin/app.sh
 RUN chmod +x /usr/local/bin/app.sh
@@ -108,7 +108,7 @@ RUN chmod +x /usr/local/bin/app.sh
 
 # Setup hosts
 
-RUN echo "127.0.0.1    app.local" >> /etc/hosts
+#RUN echo "127.0.0.1    app.local" >> /etc/hosts
 
 
 # Setup Supervisor
@@ -125,7 +125,7 @@ RUN sudo a2enmod rewrite
 RUN sudo a2enmod ssl
 RUN sudo a2enmod status
 
-RUN sudo a2ensite app.conf
+#RUN sudo a2ensite app.conf
 
 
 # Setup MySQL
@@ -141,7 +141,8 @@ RUN service mysql start && \
 
 # Expose volumes
 
-VOLUME /var/www/app
+#VOLUME /var/www/app
+VOLUME /var/www
 
 
 # Expose ports
@@ -156,7 +157,8 @@ EXPOSE 15672
 
 # Define working directory
 
-WORKDIR /var/www/app
+#WORKDIR /var/www/app
+WORKDIR /var/www
 
 
 # Run Supervisor daemon
