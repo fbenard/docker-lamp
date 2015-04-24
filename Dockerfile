@@ -1,6 +1,6 @@
 # Base image
 
-FROM ubuntu:14.04
+FROM ubuntu:latest
 
 
 # Maintainers
