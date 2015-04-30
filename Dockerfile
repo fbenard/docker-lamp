@@ -128,6 +128,11 @@ RUN sudo a2enmod status
 RUN sudo a2ensite app.conf
 
 
+# Setup PHP
+
+RUN echo "xdebug.max_nesting_level = 200" >> /etc/php5/cli/php.ini
+
+
 # Setup MySQL
 
 RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
