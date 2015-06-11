@@ -33,15 +33,15 @@ Once inside the container, start services:
 app.sh
 ```
 
-Edit your hosts so that app.local is forwarded to the IP address of the Docker container.
+Edit your hosts so that local.app.dev is forwarded to the IP address of the Docker container.
 
 ```
-x.x.x.x    app.local
+x.x.x.x    local.app.dev
 ```
 
 Then open you browser and visit:
 
-http://app.local
+http://local.app.dev
 
 
 ## Services
@@ -61,7 +61,7 @@ docker-web is shipped with the following services:
 
 **ElasticSearch**
 
-- http://app.local:9200/_plugin/head/
+- http://local.app.dev:9200/_plugin/head/
 
 
 # Bind services

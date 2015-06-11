@@ -108,7 +108,7 @@ RUN chmod +x /usr/local/bin/app.sh
 
 # Setup hosts
 
-RUN echo "127.0.0.1    app.local" >> /etc/hosts
+RUN echo "127.0.0.1    local.app.dev" >> /etc/hosts
 
 
 # Setup Supervisor
