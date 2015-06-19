@@ -63,7 +63,7 @@ RUN pecl install zip
 
 RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
-RUN echo "deb http://packages.elastic.co/elasticsearch/1.6/debian stable main" | sudo tee -a /etc/apt/sources.list
+RUN sudo add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
 
 RUN sudo apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
