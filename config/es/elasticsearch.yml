@@ -1,0 +1,22 @@
+cluster:
+    name: docker-web
+
+discovery:
+    zen:
+        ping:
+            multicast:
+                enabled: false
+            unicast:
+                hosts: 127.0.0.1
+
+network:
+    publish_host: _local_
+
+node:
+    name: docker-web-main
+
+path: 
+    data: /usr/share/elasticsearch/data/main
+
+script:
+    disable_dynamic: false

@@ -99,6 +99,8 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 
 ADD config/app.conf /etc/apache2/sites-available/app.conf
 ADD config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+ADD config/es/logging.yml /etc/elasticsearch/logging.yml
 
 RUN mkdir -p /var/www/app
 
