@@ -15,8 +15,5 @@ network:
 node:
     name: docker-web-main
 
-path: 
-    data: /usr/share/elasticsearch/data/main
-
 script:
     disable_dynamic: false
