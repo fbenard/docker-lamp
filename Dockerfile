@@ -25,17 +25,11 @@ RUN sudo apt-get update && \
     software-properties-common python-software-properties
 
 
-# Setup localization
+# Setup culture
 
-RUN echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | debconf-set-selections
-RUN echo "locales locales/default_environment_locale  select  en_US.UTF-8" | debconf-set-selections
-RUN DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
-    locales && \
-    sudo locale-gen en_US.UTF-8 && \
-    sudo dpkg-reconfigure -f noninteractive locales
-
-ENV LC_ALL en_US.UTF-8
+RUN sudo locale-gen en_US.UTF-8 && \
+    sudo dpkg-reconfigure --frontend noninteractive locales && \
+    echo "LANG=en_US.UTF-8" > /etc/default/locale
 
 RUN echo "Europe/Paris" | sudo tee /etc/timezone && \
     sudo dpkg-reconfigure --frontend noninteractive tzdata
