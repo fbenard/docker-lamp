@@ -96,10 +96,10 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 
 # Add files to image
 
-ADD config/app.conf /etc/apache2/sites-available/app.conf
-ADD config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD config/apache/app.conf /etc/apache2/sites-available/app.conf
 ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ADD config/es/logging.yml /etc/elasticsearch/logging.yml
+ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/www/app
 
