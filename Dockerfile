@@ -43,7 +43,8 @@ RUN echo "Europe/Paris" | sudo tee /etc/timezone && \
 
 # Install packages
 
-RUN DEBIAN_FRONTEND=noninteractive \
+RUN sudo apt-get update && \
+    DEBIAN_FRONTEND=noninteractive \
     sudo apt-get install -yqq \
     wget curl \
     nano \
