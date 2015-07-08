@@ -89,9 +89,22 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN sudo mv composer.phar /usr/local/bin/composer
 
 
+# Install Node.js, NPM and Bower
+
+RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+
+RUN sudo apt-get update && \
+    DEBIAN_FRONTEND=noninteractive && \
+    sudo apt-get install -yqq \
+    nodejs
+
+RUN sudo npm install -g bower
+
+
 # Add files to image
 
 ADD config/apache/app.conf /etc/apache2/sites-available/app.conf
+ADD config/bower/bowerrc /root/.bowerrc
 ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ADD config/es/logging.yml /etc/elasticsearch/logging.yml
 ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
