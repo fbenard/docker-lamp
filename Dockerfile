@@ -61,7 +61,7 @@ RUN echo "deb http://packages.elastic.co/elasticsearch/1.6/debian stable main" |
 
 RUN sudo apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
+    sudo apt-get install -yqq --no-install-recommends \
     openjdk-7-jdk \
     elasticsearch
 
