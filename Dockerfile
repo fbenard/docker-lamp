@@ -153,6 +153,11 @@ RUN service mysql start && \
     mysql -u root -p${DOCKER_MYSQL_PASSWORD} -e "GRANT ALL PRIVILEGES ON app.* TO 'app'@'%' IDENTIFIED BY 'app' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
 
+# Setup Bash
+
+RUN echo "app.sh" >> ~/.bashrc
+
+
 # Expose volumes
 
 VOLUME /var/www/app
