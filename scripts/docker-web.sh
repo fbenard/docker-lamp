@@ -116,9 +116,12 @@ done
 
 # Init boot2docker
 
-VBoxManage discardstate boot2docker-vm
-boot2docker up
-`boot2docker shellinit`
+if [ `uname` = "Darwin" ]
+then
+	VBoxManage discardstate boot2docker-vm 1> /dev/null 2> /dev/null
+	boot2docker up 1> /dev/null 2> /dev/null
+	`boot2docker shellinit`
+fi
 
 
 # Run the image
