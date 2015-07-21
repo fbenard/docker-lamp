@@ -27,12 +27,6 @@ cd myapp
 docker-web
 ```
 
-Once inside the container, start services:
-
-```
-app.sh
-```
-
 Edit your hosts so that local.app.dev is forwarded to the IP address of the Docker container.
 
 ```
