@@ -48,9 +48,10 @@ RUN sudo apt-get update && \
     mysql-server \
     redis-server \
     php-pear \
-    php5 libapache2-mod-php5 php5-cli php5-curl php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis
+    php5 libapache2-mod-php5 php5-cli php5-curl php5-dev php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis
 
 RUN pecl install zip
+RUN pecl install xdebug
 
 
 # Install ElasticSearch
@@ -139,6 +140,7 @@ RUN sudo a2ensite app.conf
 
 # Setup PHP
 
+RUN echo "zend_extension=xdebug.so" >> /etc/php5/cli/php.ini
 RUN echo "xdebug.max_nesting_level = 200" >> /etc/php5/cli/php.ini
 
 
