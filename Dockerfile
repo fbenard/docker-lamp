@@ -48,7 +48,8 @@ RUN sudo apt-get update && \
     mysql-server \
     redis-server \
     php-pear \
-    php5 libapache2-mod-php5 php5-cli php5-curl php5-dev php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis
+    php5 libapache2-mod-php5 php5-cli php5-curl php5-dev php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis \
+    libssh2-1-dev libssh2-php
 
 RUN pecl install zip
 RUN pecl install xdebug
