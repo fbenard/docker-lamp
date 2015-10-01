@@ -30,7 +30,7 @@ Run your web application inside the docker-web image:
 
 ```
 cd myapp
-docker run fbenard/docker-web -p 80:80 -v `pwd`:/var/www/app $image
+docker run --rm -it --tty --entrypoint="bash" -p 80:80 -v `pwd`:/var/www/app fbenard/docker-web
 ```
 
 Then open you browser and visit:
