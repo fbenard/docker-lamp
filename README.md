@@ -17,11 +17,13 @@ To pull the image:
 docker pull fbenard/docker-web
 ```
 
-Edit your hosts so that local.app.dev is forwarded to the IP address of the Docker container.
+Edit your hosts so that `local.app.dev` is forwarded to the IP address of the Docker container.
 
 ```
 x.x.x.x    local.app.dev
 ```
+
+If you're running Docker on Linux, run `ifconfig eth0` to know your IP address. If you're running Windows or OS X, run `ifconfig vboxnet0`.
 
 
 ## Getting started
