@@ -8,7 +8,8 @@ dependencies:
         - docker build -t fbenard/docker-web $HOME/docker-web
 test:
     override:
-        - docker run -dit fbenard/docker-web
+        - docker run -dit -p 80:80 fbenard/docker-web && sleep 10
+        - if [[ $(curl -sL -o /dev/null -w %{http_code} 'http://local.app.dev') == *200* ]]; then exit 0; else exit 1; fi;
 deployment:
     hub:
         branch: master
