@@ -111,7 +111,7 @@ ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ADD config/es/logging.yml /etc/elasticsearch/logging.yml
 ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN mkdir -p /var/www/app
+RUN rm -drf /var/www/*
 
 
 # Setup hosts
@@ -160,7 +160,7 @@ RUN echo "service supervisor start" >> ~/.bashrc
 
 # Expose volumes
 
-VOLUME /var/www/app
+VOLUME /var/www
 
 
 # Expose ports
@@ -175,7 +175,7 @@ EXPOSE 15672
 
 # Define working directory
 
-WORKDIR /var/www/app
+WORKDIR /var/www
 
 
 # Run Supervisor daemon
