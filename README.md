@@ -1,4 +1,4 @@
-Docker-Web
+docker-web
 ==========
 
 Quickly run and develop web applications.
