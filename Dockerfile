@@ -113,9 +113,6 @@ ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir -p /var/www/app
 
-ADD scripts/app.sh /usr/local/bin/app.sh
-RUN chmod +x /usr/local/bin/app.sh
-
 
 # Setup hosts
 
@@ -158,7 +155,7 @@ RUN service mysql start && \
 
 # Setup Bash
 
-RUN echo "app.sh" >> ~/.bashrc
+RUN echo "service supervisor start" >> ~/.bashrc
 
 
 # Expose volumes
