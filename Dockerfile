@@ -101,6 +101,7 @@ RUN sudo apt-get update && \
     nodejs
 
 RUN sudo npm install -g bower
+RUN sudo npm install -g gulp
 
 
 # Add files to image
