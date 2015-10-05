@@ -91,17 +91,14 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN sudo mv composer.phar /usr/local/bin/composer
 
 
-# Install Node.js, NPM and Bower
+# Install Node.js and NPM
 
 RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
 
 RUN sudo apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
     sudo apt-get install -yqq \
-    nodejs
-
-RUN sudo npm install -g bower
-RUN sudo npm install -g gulp
+    nodejs npm
 
 
 # Add files to image
