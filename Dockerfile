@@ -98,7 +98,7 @@ RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
 RUN sudo apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
     sudo apt-get install -yqq \
-    nodejs npm
+    nodejs
 
 
 # Add files to image
