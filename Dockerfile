@@ -104,7 +104,6 @@ RUN sudo apt-get update && \
 # Add files to image
 
 ADD config/apache/app.conf /etc/apache2/sites-available/app.conf
-ADD config/bower/bowerrc /root/.bowerrc
 ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ADD config/es/logging.yml /etc/elasticsearch/logging.yml
 ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
