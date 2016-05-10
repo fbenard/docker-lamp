@@ -5,7 +5,7 @@ FROM ubuntu:latest
 
 # Maintainers
 
-MAINTAINER Fabien BÉNARD "fbenard.public@gmail.com"
+MAINTAINER Fabien BÉNARD "fabien@benard.co"
 
 
 # Environment variables
