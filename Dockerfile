@@ -15,9 +15,9 @@ ENV DOCKER_MYSQL_PASSWORD root
 
 # Install core packages
 
-RUN sudo apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
+    apt-get install -yqq \
     apt-utils \
     dialog \
     debconf-utils \
@@ -27,19 +27,19 @@ RUN sudo apt-get update && \
 
 # Setup culture
 
-RUN sudo locale-gen en_US.UTF-8 && \
-    sudo dpkg-reconfigure --frontend noninteractive locales && \
+RUN locale-gen en_US.UTF-8 && \
+    dpkg-reconfigure --frontend noninteractive locales && \
     echo "LANG=en_US.UTF-8" > /etc/default/locale
 
-RUN echo "Europe/Paris" | sudo tee /etc/timezone && \
-    sudo dpkg-reconfigure --frontend noninteractive tzdata
+RUN echo "Europe/Paris" | tee /etc/timezone && \
+    dpkg-reconfigure --frontend noninteractive tzdata
 
 
 # Install packages
 
-RUN sudo apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
-    sudo apt-get install -yqq \
+    apt-get install -yqq \
     wget curl \
     nano \
     git \
@@ -95,9 +95,9 @@ RUN sudo mv composer.phar /usr/local/bin/composer
 
 RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
 
-RUN sudo apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
+    apt-get install -yqq \
     nodejs
 
 
@@ -123,12 +123,12 @@ RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor
 
 # Setup Apache
 
-RUN sudo a2enmod deflate
-RUN sudo a2enmod expires
-RUN sudo a2enmod headers
-RUN sudo a2enmod rewrite
-RUN sudo a2enmod ssl
-RUN sudo a2enmod status
+RUN a2enmod deflate
+RUN a2enmod expires
+RUN a2enmod headers
+RUN a2enmod rewrite
+RUN a2enmod ssl
+RUN a2enmod status
 
 RUN sudo a2ensite app.conf
 
