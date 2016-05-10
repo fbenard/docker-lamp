@@ -16,13 +16,11 @@ To pull the image:
 docker pull fbenard/docker-web
 ```
 
-Edit your hosts so that `local.app.dev` is forwarded to the IP address of the Docker container.
+Edit your hosts so that `docker.local` is forwarded to the IP address of the Docker container.
 
 ```
-x.x.x.x    local.app.dev
+127.0.0.1    docker.local
 ```
-
-If you're running Docker on Linux, run `ifconfig eth0` to know your IP address. If you're running Windows or OS X, run `ifconfig vboxnet0`.
 
 
 ## Getting started
@@ -36,7 +34,7 @@ docker run --rm -it --tty --entrypoint="bash" -p 80:80 -v `pwd`:/var/www/html fb
 
 Then open you browser and visit:
 
-http://local.app.dev
+http://docker.local
 
 
 ## Services
@@ -57,4 +55,4 @@ The image is shipped with the following services:
 
 **ElasticSearch**
 
-- http://local.app.dev:9200/_plugin/head/
+- http://docker.local:9200/_plugin/head/

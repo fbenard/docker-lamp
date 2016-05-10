@@ -113,7 +113,7 @@ RUN rm -drf /var/www/html
 
 # Setup hosts
 
-RUN echo "127.0.0.1    local.app.dev" >> /etc/hosts
+RUN echo "127.0.0.1    docker.local" >> /etc/hosts
 
 
 # Setup Supervisor
