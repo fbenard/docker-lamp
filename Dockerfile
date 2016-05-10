@@ -13,6 +13,12 @@ MAINTAINER Fabien BÉNARD "fabien@benard.co"
 ENV DOCKER_MYSQL_PASSWORD root
 
 
+# Add config files
+
+ADD config/apache/vhost.conf /etc/apache2/sites-available/vhost.conf
+ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+
 # Install core packages
 
 RUN apt-get update && \
@@ -101,12 +107,6 @@ RUN apt-get update && \
     nodejs
 
 
-# Add files to image
-
-ADD config/apache/app.conf /etc/apache2/sites-available/app.conf
-ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-ADD config/es/logging.yml /etc/elasticsearch/logging.yml
-ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN rm -drf /var/www/html
 
