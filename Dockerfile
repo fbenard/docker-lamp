@@ -82,6 +82,7 @@ RUN apt-get update && \
     nodejs
 
 
+# Remove content of Apache host
 
 RUN rm -drf /var/www/html
 
