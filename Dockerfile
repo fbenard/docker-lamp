@@ -51,6 +51,7 @@ RUN apt-get update && \
     git \
     zziplib-bin \
     apache2 \
+    elasticsearch \
     mysql-server \
     redis-server \
     php-pear \
@@ -61,19 +62,8 @@ RUN pecl install zip
 RUN pecl install xdebug
 
 
-# Install ElasticSearch
 
-RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
-RUN echo "deb http://packages.elastic.co/elasticsearch/1.6/debian stable main" | sudo tee -a /etc/apt/sources.list
-
-RUN sudo apt-get update && \
-    DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq --no-install-recommends \
-    openjdk-7-jdk \
-    elasticsearch
-
-RUN sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
 
 
 # Install RabbitMQ
