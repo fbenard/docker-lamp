@@ -95,12 +95,6 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2enmod status
 
-
-
-# Setup PHP
-
-RUN echo "zend_extension=xdebug.so" >> /etc/php5/cli/php.ini
-RUN echo "xdebug.max_nesting_level = 200" >> /etc/php5/cli/php.ini
 RUN a2ensite vhost.conf
 
 
