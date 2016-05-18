@@ -57,6 +57,7 @@ RUN apt-get update && \
     php-pear \
     php5 libapache2-mod-php5 php5-cli php5-curl php5-dev php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis \
     libssh2-1-dev libssh2-php
+    composer \
 
 RUN pecl install zip
 RUN pecl install xdebug
@@ -79,12 +80,6 @@ RUN sudo apt-get update && \
     rabbitmq-server
 
 RUN rabbitmq-plugins enable rabbitmq_management
-
-
-# Install Composer
-
-RUN curl -sS https://getcomposer.org/installer | php
-RUN sudo mv composer.phar /usr/local/bin/composer
 
 
 # Install Node.js and NPM
