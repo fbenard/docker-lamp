@@ -58,7 +58,7 @@ RUN apt-get update && \
     php-imagick php-redis php-ssh2 \
     composer \
     libapache2-mod-php7.0 \
-    nodejs
+    nodejs npm
 
 
 
