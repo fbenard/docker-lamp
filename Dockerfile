@@ -75,7 +75,7 @@ RUN rabbitmq-plugins enable rabbitmq_management
 # Create nodejs symblic link
 # See https://github.com/nodejs/node-v0.x-archive/issues/3911
 
-ln -s /usr/bin/nodejs /usr/bin/node
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 
 # Remove content of Apache host
