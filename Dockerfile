@@ -50,7 +50,7 @@ RUN apt-get update && \
     nano \
     git \
     zziplib-bin \
-    apache2  \
+    apache2 \
     mysql-server \
     redis-server \
     php-pear \
