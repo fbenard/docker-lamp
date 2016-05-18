@@ -66,6 +66,7 @@ RUN apt-get update && \
 #RUN bash -x /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 
 
+# Install RabbitMQ plugins
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
