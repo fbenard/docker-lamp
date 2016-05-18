@@ -1,0 +1,2 @@
+es.logger.level: INFO
+rootLogger: INFO, console, file
