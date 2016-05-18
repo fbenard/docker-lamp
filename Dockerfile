@@ -57,7 +57,8 @@ RUN apt-get update && \
     php7.0 php7.0-bz2 php7.0-cli php7.0-curl php7.0-dev php7.0-gd php7.0-intl php7.0-json php7.0-mcrypt php7.0-mysql php7.0-sqlite3 php7.0-xml php7.0-xsl php7.0-zip \
     php-imagick php-redis php-ssh2 \
     composer \
-    libapache2-mod-php7.0
+    libapache2-mod-php7.0 \
+    nodejs
 
 
 
@@ -65,16 +66,6 @@ RUN apt-get update && \
 
 
 RUN rabbitmq-plugins enable rabbitmq_management
-
-
-# Install Node.js and NPM
-
-RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
-
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive && \
-    apt-get install -yqq \
-    nodejs
 
 
 # Remove content of Apache host
