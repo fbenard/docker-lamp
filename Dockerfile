@@ -1,6 +1,6 @@
 # Base image
 
-FROM ubuntu:latest
+FROM ubuntu:xenial
 
 
 # Maintainers
