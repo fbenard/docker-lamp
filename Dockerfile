@@ -1,11 +1,11 @@
 # Base image
 
-FROM ubuntu:latest
+FROM ubuntu:xenial
 
 
 # Maintainers
 
-MAINTAINER Fabien BÉNARD "fbenard.public@gmail.com"
+MAINTAINER Fabien BÉNARD "fabien@benard.co"
 
 
 # Environment variables
@@ -13,11 +13,17 @@ MAINTAINER Fabien BÉNARD "fbenard.public@gmail.com"
 ENV DOCKER_MYSQL_PASSWORD root
 
 
+# Add config files
+
+ADD config/apache/vhost.conf /etc/apache2/sites-available/vhost.conf
+ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+
 # Install core packages
 
-RUN sudo apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
+    apt-get install -yqq \
     apt-utils \
     dialog \
     debconf-utils \
@@ -27,93 +33,52 @@ RUN sudo apt-get update && \
 
 # Setup culture
 
-RUN sudo locale-gen en_US.UTF-8 && \
-    sudo dpkg-reconfigure --frontend noninteractive locales && \
+RUN locale-gen en_US.UTF-8 && \
+    dpkg-reconfigure --frontend noninteractive locales && \
     echo "LANG=en_US.UTF-8" > /etc/default/locale
 
-RUN echo "Europe/Paris" | sudo tee /etc/timezone && \
-    sudo dpkg-reconfigure --frontend noninteractive tzdata
+RUN echo "Europe/Paris" | tee /etc/timezone && \
+    dpkg-reconfigure --frontend noninteractive tzdata
 
 
 # Install packages
 
-RUN sudo apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
-    sudo apt-get install -yqq \
+    apt-get install -yqq \
     wget curl \
     nano \
     git \
-    zziplib-bin \
-    apache2  \
+    apache2 \
+    elasticsearch \
     mysql-server \
+    rabbitmq-server \
     redis-server \
-    php-pear \
-    php5 libapache2-mod-php5 php5-cli php5-curl php5-dev php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis \
-    libssh2-1-dev libssh2-php
-
-RUN pecl install zip
-RUN pecl install xdebug
-
-
-# Install ElasticSearch
-
-RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-
-RUN echo "deb http://packages.elastic.co/elasticsearch/1.6/debian stable main" | sudo tee -a /etc/apt/sources.list
-
-RUN sudo apt-get update && \
-    DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq --no-install-recommends \
-    openjdk-7-jdk \
-    elasticsearch
-
-RUN sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+    php7.0 php7.0-bz2 php7.0-cli php7.0-curl php7.0-dev php7.0-gd php7.0-intl php7.0-json php7.0-mcrypt php7.0-mysql php7.0-sqlite3 php7.0-xml php7.0-xsl php7.0-zip \
+    php-imagick php-redis php-ssh2 \
+    composer \
+    libapache2-mod-php7.0 \
+    nodejs npm
 
 
-# Install RabbitMQ
+# Install ElasticSearch plugins
 
-RUN echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
+#RUN bash -x /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 
-RUN wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc && \
-    sudo apt-key add rabbitmq-signing-key-public.asc
 
-RUN sudo apt-get update && \
-    DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
-    rabbitmq-server
+# Install RabbitMQ plugins
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
 
-# Install Composer
-
-RUN curl -sS https://getcomposer.org/installer | php
-RUN sudo mv composer.phar /usr/local/bin/composer
-
-
-# Install Node.js and NPM
-
-RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
-
-RUN sudo apt-get update && \
-    DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
-    nodejs
-
-
-# Add files to image
-
-ADD config/apache/app.conf /etc/apache2/sites-available/app.conf
-ADD config/es/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-ADD config/es/logging.yml /etc/elasticsearch/logging.yml
-ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# Remove content of Apache host
 
 RUN rm -drf /var/www/html
 
 
 # Setup hosts
 
-RUN echo "127.0.0.1    local.app.dev" >> /etc/hosts
+RUN echo "127.0.0.1    docker.local" >> /etc/hosts
 
 
 # Setup Supervisor
@@ -123,20 +88,14 @@ RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor
 
 # Setup Apache
 
-RUN sudo a2enmod deflate
-RUN sudo a2enmod expires
-RUN sudo a2enmod headers
-RUN sudo a2enmod rewrite
-RUN sudo a2enmod ssl
-RUN sudo a2enmod status
+RUN a2enmod deflate
+RUN a2enmod expires
+RUN a2enmod headers
+RUN a2enmod rewrite
+RUN a2enmod ssl
+RUN a2enmod status
 
-RUN sudo a2ensite app.conf
-
-
-# Setup PHP
-
-RUN echo "zend_extension=xdebug.so" >> /etc/php5/cli/php.ini
-RUN echo "xdebug.max_nesting_level = 200" >> /etc/php5/cli/php.ini
+RUN a2ensite vhost.conf
 
 
 # Setup MySQL
