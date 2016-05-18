@@ -51,6 +51,7 @@ RUN apt-get update && \
     git \
     apache2 \
     elasticsearch \
+    mongodb \
     mysql-server \
     rabbitmq-server \
     redis-server \
@@ -69,6 +70,12 @@ RUN apt-get update && \
 # Install RabbitMQ plugins
 
 RUN rabbitmq-plugins enable rabbitmq_management
+
+
+# Create nodejs symblic link
+# See https://github.com/nodejs/node-v0.x-archive/issues/3911
+
+ln -s /usr/bin/nodejs /usr/bin/node
 
 
 # Remove content of Apache host
