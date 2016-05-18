@@ -61,7 +61,9 @@ RUN apt-get update && \
     nodejs npm
 
 
+# Install ElasticSearch plugins
 
+#RUN bash -x /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 
 
 
