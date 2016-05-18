@@ -53,6 +53,7 @@ RUN apt-get update && \
     apache2 \
     elasticsearch \
     mysql-server \
+    rabbitmq-server \
     redis-server \
     php-pear \
     php5 libapache2-mod-php5 php5-cli php5-curl php5-dev php5-gd php5-imagick php5-intl php5-json php5-mcrypt php5-mysqlnd php5-redis \
@@ -67,17 +68,6 @@ RUN pecl install xdebug
 
 
 
-# Install RabbitMQ
-
-RUN echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
-
-RUN wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc && \
-    sudo apt-key add rabbitmq-signing-key-public.asc
-
-RUN sudo apt-get update && \
-    DEBIAN_FRONTEND=noninteractive && \
-    sudo apt-get install -yqq \
-    rabbitmq-server
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
