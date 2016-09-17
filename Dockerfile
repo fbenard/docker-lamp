@@ -72,6 +72,19 @@ RUN apt-get update && \
 RUN rabbitmq-plugins enable rabbitmq_management
 
 
+# Install Xdebug
+
+RUN wget https://xdebug.org/files/xdebug-2.4.1.tgz
+RUN tar -xvzf xdebug-2.4.1.tgz
+RUN cd xdebug-2.4.1 && \
+    phpize && \
+    ./configure && \
+    make && \
+    cp modules/xdebug.so /usr/lib/php/20151012
+
+RUN echo "zend_extension = /usr/lib/php/20151012/xdebug.so" > /etc/php/7.0/cli/php.ini
+
+
 # Create nodejs symblic link
 # See https://github.com/nodejs/node-v0.x-archive/issues/3911
 
