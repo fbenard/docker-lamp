@@ -100,11 +100,6 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN rm -drf /var/www/html
 
 
-# Setup hosts
-
-RUN echo "127.0.0.1    docker.local" >> /etc/hosts
-
-
 # Setup Supervisor
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor
