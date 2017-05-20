@@ -21,7 +21,8 @@ ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Install core packages
 
-RUN apt-get update && \
+RUN apt-get clean && \
+    apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
     apt-get install -yqq \
     apt-utils \
