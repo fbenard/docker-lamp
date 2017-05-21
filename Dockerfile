@@ -21,24 +21,26 @@ ADD config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Install core packages
 
-RUN apt-get update && \
+RUN apt-get clean && \
+    apt-get update && \
     DEBIAN_FRONTEND=noninteractive && \
     apt-get install -yqq \
     apt-utils \
     dialog \
     debconf-utils \
+    locales \
     supervisor \
     software-properties-common python-software-properties
 
 
 # Setup culture
 
-RUN locale-gen en_US.UTF-8 && \
-    dpkg-reconfigure --frontend noninteractive locales && \
-    echo "LANG=en_US.UTF-8" > /etc/default/locale
+# RUN locale-gen en_US.UTF-8 && \
+#     dpkg-reconfigure --frontend noninteractive locales && \
+#     echo "LANG=en_US.UTF-8" > /etc/default/locale
 
-RUN echo "Europe/Paris" | tee /etc/timezone && \
-    dpkg-reconfigure --frontend noninteractive tzdata
+# RUN echo "Europe/Paris" | tee /etc/timezone && \
+#     dpkg-reconfigure --frontend noninteractive tzdata
 
 
 # Install packages
@@ -55,8 +57,10 @@ RUN apt-get update && \
     mysql-server \
     rabbitmq-server \
     redis-server \
-    php7.0 php7.0-bz2 php7.0-cli php7.0-curl php7.0-dev php7.0-gd php7.0-intl php7.0-json php7.0-mcrypt php7.0-mysql php7.0-sqlite3 php7.0-xml php7.0-xsl php7.0-zip \
-    php-imagick php-redis php-ssh2 \
+    php7.0 php7.0-bz2 php7.0-cli php7.0-curl php7.0-dev \
+    php7.0-gd php7.0-intl php7.0-json php7.0-mcrypt php7.0-mbstring \
+    php7.0-mysql php7.0-sqlite3 php7.0-xml php7.0-xsl php7.0-zip \
+    php-imagick php-redis php-ssh2 php-xdebug \
     composer \
     libapache2-mod-php7.0 \
     nodejs npm
@@ -74,15 +78,15 @@ RUN rabbitmq-plugins enable rabbitmq_management
 
 # Install Xdebug
 
-RUN wget https://xdebug.org/files/xdebug-2.4.1.tgz
-RUN tar -xvzf xdebug-2.4.1.tgz
-RUN cd xdebug-2.4.1 && \
-    phpize && \
-    ./configure && \
-    make && \
-    cp modules/xdebug.so /usr/lib/php/20151012
-
-RUN echo "zend_extension = /usr/lib/php/20151012/xdebug.so" > /etc/php/7.0/cli/php.ini
+#RUN wget https://xdebug.org/files/xdebug-2.4.1.tgz
+#RUN tar -xvzf xdebug-2.4.1.tgz
+#RUN cd xdebug-2.4.1 && \
+#    phpize && \
+#    ./configure && \
+#    make && \
+#    cp modules/xdebug.so /usr/lib/php/20151012
+#
+#RUN echo "zend_extension = /usr/lib/php/20151012/xdebug.so" > /etc/php/7.0/cli/php.ini
 
 
 # Create nodejs symblic link
@@ -94,11 +98,6 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 # Remove content of Apache host
 
 RUN rm -drf /var/www/html
-
-
-# Setup hosts
-
-RUN echo "127.0.0.1    docker.local" >> /etc/hosts
 
 
 # Setup Supervisor
