@@ -33,16 +33,6 @@ RUN apt-get clean && \
     software-properties-common python-software-properties
 
 
-# Setup culture
-
-# RUN locale-gen en_US.UTF-8 && \
-#     dpkg-reconfigure --frontend noninteractive locales && \
-#     echo "LANG=en_US.UTF-8" > /etc/default/locale
-
-# RUN echo "Europe/Paris" | tee /etc/timezone && \
-#     dpkg-reconfigure --frontend noninteractive tzdata
-
-
 # Install packages
 
 RUN apt-get update && \
